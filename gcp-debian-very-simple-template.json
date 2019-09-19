@@ -4,6 +4,7 @@
       "type": "googlecompute",
       "account_file": "/gcloud/sample-gcp-debian-default.json",
       "project_id": "sample-gcp-debian",
+      "image_description": "Sample Debian buster packer script which only creates an image in a zone and nothing else.",
       "source_image": "debian-10-buster-v20190916",
       "ssh_username": "gcp-user",
       "zone": "us-central1-a"
