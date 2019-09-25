@@ -73,8 +73,44 @@ packer build -var region="us-central1" \
              -var source_image_family="ubuntu-1804-lts" \
              -var machine_type="n1-standard-1" \
              -var zone="us-central1-a" \
-             -var project_id=sample-gcp-debian \
+             -var project_id=$PROJECT_ID \
              gcp-ubuntu-var-template.json
+```
+
+If there were no errors, then that means that your image was created
+successfully.
+
+### gcp-ubuntu-var-generic-webserver.json
+
+Similar to the above, except this actually builds a useful VM image of
+Ubuntu 18.04 LTS by installing common webserver components like nginx
+and docker and others.
+
+The only assumed requirements for this build are:
+
+    * account file is `/gcloud/sample-gcp-ubuntu-default.json`
+
+So before build, ensure that your GCP Cloud is setup to give you API access,
+and that you are able to access the regions and zones you request:
+
+```bash
+packer validate -var region="us-central1" \
+                -var source_image_family="ubuntu-1804-lts" \
+                -var machine_type="n1-standard-1" \
+                -var zone="us-central1-a" \
+                -var project_id=$PROJECT_ID \
+                gcp-ubuntu-var-generic-webserver.json
+```
+
+If that worked, then build the image like so:
+
+```bash
+packer build -var region="us-central1" \
+             -var source_image_family="ubuntu-1804-lts" \
+             -var machine_type="n1-standard-1" \
+             -var zone="us-central1-a" \
+             -var project_id=$PROJECT_ID \
+             gcp-ubuntu-var-generic-webserver.json
 ```
 
 If there were no errors, then that means that your image was created
